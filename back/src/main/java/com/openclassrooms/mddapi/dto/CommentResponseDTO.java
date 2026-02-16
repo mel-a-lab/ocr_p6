@@ -2,14 +2,17 @@ package com.openclassrooms.mddapi.dto;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ArticleRequestDTO {
-    private String title;
+public class CommentResponseDTO {
+    private Long id;
     private String content;
-    private Long themeId;
+    private LocalDateTime createdAt;
+    private String author;
 }
 

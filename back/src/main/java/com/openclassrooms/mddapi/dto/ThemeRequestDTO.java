@@ -7,8 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AuthResponseDTO {
-    private String token;
-    private UserResponseDTO user;
+public class ThemeRequestDTO {
+    private String name;
+    private String description;
 }
-

@@ -28,8 +28,19 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @ManyToMany
+    @JoinTable(
+            name = "user_subscriptions",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "theme_id")
+    )
+    private Set<Theme> subscriptions = new HashSet<>();
 
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Article> articles = new HashSet<>();
 
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Comment> comments = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {

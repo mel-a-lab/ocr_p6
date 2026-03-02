@@ -1,0 +1,52 @@
+<!-- create-article.component.html -->
+<app-nav-bar-home></app-nav-bar-home>
+
+<div class="main-content">
+  <div class="header">
+    <button class="back-btn" type="button" (click)="goBack()">
+      ←
+    </button>
+    <h1 class="page-title">Créer un nouvel article</h1>
+  </div>
+
+  <form class="article-form" (ngSubmit)="onSubmit()">
+    <div class="form-group theme-selector">
+      <label for="theme">Sélectionner un thème</label>
+      <div class="input-wrapper">
+        <select id="theme" [(ngModel)]="selectedThemeId" name="themeId" required>
+          <option value="" disabled>Sélectionner...</option>
+          <option *ngFor="let theme of themes" [value]="theme.id">{{ theme.name }}</option>
+        </select>
+
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="title">Titre de l'article</label>
+      <input
+        type="text"
+        id="title"
+        [(ngModel)]="articleTitle"
+        name="title"
+        placeholder="Entrez le titre de l'article"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="content">Contenu de l'article</label>
+      <textarea
+        id="content"
+        [(ngModel)]="articleContent"
+        name="content"
+        placeholder="Contenu de l'article"
+        rows="10"
+        required
+      ></textarea>
+    </div>
+
+    <button type="submit" class="create-btn" [disabled]="!selectedThemeId || !articleTitle || !articleContent">
+      Créer
+    </button>
+  </form>
+</div>

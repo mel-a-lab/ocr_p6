@@ -1,0 +1,286 @@
+/* article-details.component.scss */
+:host {
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; // Match system font from screenshot
+}
+
+.article-details-container {
+  min-height: calc(100vh - 60px); // Adjust for navbar if needed
+  background-color: #f8f9fa; // Light gray background
+}
+
+.main-content {
+  padding: 2rem;
+  max-width: 1200px; // Allow room for sidebar if present
+  margin: 0 auto;
+}
+
+.article-card {
+  background: #fff;
+  border-radius: 12px; // Slightly rounded corners
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); // Subtle shadow
+  padding: 2.5rem; // More padding for desktop
+  margin-bottom: 2rem;
+}
+
+.title-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  .back-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+
+    .back-icon {
+      width: 20px;
+      height: 20px;
+      stroke: #374151; // Dark gray for icon
+    }
+  }
+
+  .article-title {
+    font-size: 32px; // Larger title to match screenshot scale
+    font-weight: 700;
+    color: #111827; // Darker black
+    margin: 0;
+    line-height: 1.2;
+    flex: 1;
+  }
+}
+
+.metadata {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+  color: #6b7280; // Medium gray
+  font-size: 14px;
+  font-weight: 400;
+
+  .meta-separator {
+    color: #d1d5db; // Lighter gray
+  }
+}
+
+.article-content {
+  margin-bottom: 3.5rem;
+  line-height: 1.7;
+
+  p {
+    font-size: 16px;
+    color: #4b5563; // Medium-dark gray
+    margin-bottom: 1.25rem;
+    text-align: justify; // Match lorem ipsum flow
+  }
+}
+
+.comments-section {
+  .section-title {
+    font-size: 24px; // Bold section header
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #e5e7eb; // Subtle underline
+    padding-bottom: 0.5rem;
+  }
+
+  .comments-list {
+    margin-bottom: 3rem;
+
+    .comment-item {
+      border-bottom: 1px solid #f3f4f6; // Very light border
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
+
+      &:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+      }
+
+      .comment-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start; // Align top for uneven content
+        margin-bottom: 0.75rem;
+
+        .comment-username {
+          font-weight: 600;
+          color: #111827;
+          font-size: 15px;
+        }
+
+        .comment-reactions {
+          .reaction-badge {
+            background-color: #8b5cf6; // Exact purple from MDD (adjusted from #6c5ce7 for vibrancy)
+            color: #fff;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px; // Full pill shape
+            font-size: 12px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+          }
+        }
+      }
+
+      .comment-content {
+        font-size: 15px;
+        color: #4b5563;
+        margin-bottom: 0.75rem;
+        line-height: 1.5;
+      }
+
+      .comment-meta {
+        display: flex;
+        gap: 1.25rem;
+        font-size: 13px;
+        color: #9ca3af; // Light gray
+
+        .replies-count {
+          color: #8b5cf6; // Purple link color
+          font-weight: 500;
+          cursor: pointer;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  .add-comment-form {
+    .form-group {
+      display: flex;
+      align-items: flex-end;
+      gap: 1rem;
+      position: relative;
+
+      .comment-textarea {
+        flex: 1;
+        min-height: 100px; // Taller for better UX
+        padding: 1rem 1.25rem;
+        border: 1px solid #d1d5db;
+        border-radius: 12px;
+        resize: vertical;
+        font-size: 15px;
+        font-family: inherit;
+        line-height: 1.5;
+
+        &::placeholder {
+          color: #9ca3af;
+        }
+
+        &:focus {
+          outline: none;
+          border-color: #8b5cf6;
+          box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+      }
+
+      .send-btn {
+        background: #8b5cf6;
+        border: none;
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        flex-shrink: 0;
+
+        .send-icon {
+          width: 18px;
+          height: 18px;
+        }
+
+        &:hover:not(:disabled) {
+          background-color: #7c3aed;
+          transform: translateY(-1px);
+        }
+
+        &:disabled {
+          background-color: #d1d5db;
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
+
+.loading, .error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 60px);
+  font-size: 18px;
+  color: #6b7280;
+  padding: 2rem;
+}
+
+.error {
+  color: #ef4444;
+}
+
+// Exact mobile match from screenshot (compact layout)
+@media (max-width: 1024px) {
+  .main-content {
+    padding: 1.5rem;
+  }
+
+  .article-card {
+    padding: 2rem;
+    margin: 0 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1rem;
+  }
+
+  .article-card {
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+
+  .title-section .article-title {
+    font-size: 26px;
+  }
+
+  .metadata {
+    gap: 0.5rem;
+    font-size: 13px;
+  }
+
+  .comments-section .section-title {
+    font-size: 20px;
+  }
+
+  .add-comment-form .form-group {
+    flex-direction: column;
+    align-items: stretch;
+
+    .send-btn {
+      align-self: flex-end;
+      margin-top: 0.5rem;
+      width: 40px;
+      height: 40px;
+    }
+  }
+}

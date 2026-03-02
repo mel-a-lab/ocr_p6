@@ -1,0 +1,41 @@
+<!-- create-theme.component.html -->
+<app-nav-bar-home></app-nav-bar-home>
+
+<div class="main-content">
+  <div class="header">
+    <button class="back-btn" type="button" (click)="goBack()">
+      ←
+    </button>
+    <h1 class="page-title">Créer un nouveau thème</h1>
+  </div>
+
+  <form class="article-form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Nom du thème</label>
+      <input
+        type="text"
+        id="name"
+        [(ngModel)]="themeName"
+        name="name"
+        placeholder="Entrez le nom du thème"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description du thème</label>
+      <textarea
+        id="description"
+        [(ngModel)]="themeDescription"
+        name="description"
+        placeholder="Description du thème"
+        rows="10"
+        required
+      ></textarea>
+    </div>
+
+    <button type="submit" class="create-btn" [disabled]="!themeName || !themeDescription">
+      Créer
+    </button>
+  </form>
+</div>

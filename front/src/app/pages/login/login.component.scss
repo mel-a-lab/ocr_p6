@@ -1,0 +1,124 @@
+/* Navbar visible only on desktop */
+.desktop-nav {
+  display: block;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
+
+  /* Back button visible always */
+  .back-btn {
+    align-self: flex-start;
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s;
+    margin-bottom: 1rem;
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+
+  /* Logo - hidden on desktop */
+  .logo {
+    display: none;
+  }
+
+  h1 {
+    margin-bottom: 2rem;
+    color: black;
+    font-size: 2rem;
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 400px;
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: black;
+      }
+
+      input {
+        padding: 0.8rem 1rem;
+        border: 1px solid black;
+        border-radius: 5px;
+        background-color: white;
+        font-size: 1rem;
+
+        &:focus {
+          outline: none;
+          border-color: #007bff;
+        }
+      }
+    }
+
+    .login-btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 1rem;
+      font-size: 1.1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+      width: 50%; /* 50% width of input boxes */
+      align-self: center;
+
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  }
+}
+
+/* ✅ Responsive for phones */
+@media (max-width: 600px) {
+  .desktop-nav {
+    display: none; /* hide navbar */
+  }
+
+  .login-container {
+    padding: 1rem;
+    align-items: center;
+
+    .back-btn {
+      align-self: flex-start;
+    }
+
+    /* Show and style logo on mobile */
+    .logo {
+      display: block;
+      height: 100px;
+      width: auto;
+      margin-top: 0.5rem; /* little gap below back button */
+      margin-bottom: 1.5rem; /* space before heading */
+      align-self: center;
+    }
+
+    h1 {
+      margin-bottom: 1.5rem;
+    }
+
+    .login-form {
+      width: 100%;
+    }
+  }
+}

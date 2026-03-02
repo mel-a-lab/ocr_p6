@@ -1,0 +1,72 @@
+<!-- article-details.component.html -->
+<app-nav-bar-home></app-nav-bar-home>
+
+<div class="article-details-container" *ngIf="!loading && !error && article">
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="article-card">
+      <!-- Back Arrow and Title -->
+      <div class="title-section">
+        <button class="back-btn" (click)="goBack()">
+          <svg class="back-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 18L9 12L15 6" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <h1 class="article-title">{{ $any(article).title }}</h1>
+      </div>
+
+      <!-- Metadata: Date, Author, Theme -->
+      <div class="metadata">
+        <span class="meta-date">{{ $any(article).publishedAt | date:'dd/MM/yyyy' }}</span>
+        <span class="meta-separator">•</span>
+        <span class="meta-author">{{ $any(article).authorName }}</span>
+        <span class="meta-separator">•</span>
+        <span class="meta-theme">{{ $any(article).themeName }}</span>
+      </div>
+
+      <!-- Article Content -->
+      <div class="article-content">
+        <p [innerHTML]="$any(article).content"></p>
+      </div>
+
+      <!-- Comments Section -->
+      <section class="comments-section">
+        <h2 class="section-title">Commentaires</h2>
+        <div class="comments-list">
+          <div class="comment-item" *ngFor="let comment of comments">
+            <div class="comment-header">
+              <span class="comment-username">{{ comment.author }}</span>
+
+            </div>
+            <p class="comment-content">{{ comment.content }}</p>
+            <div class="comment-meta">
+              <span class="time-ago">{{ comment.timeAgo }}</span>
+              <span *ngIf="comment.replies > 0" class="replies-count">{{ comment.replies }} replies</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add Comment Form -->
+        <form class="add-comment-form" (ngSubmit)="addComment()">
+          <div class="form-group">
+            <textarea
+              class="comment-textarea"
+              placeholder="Écrivez ici votre commentaire"
+              [(ngModel)]="newComment"
+              name="newComment"
+              required
+            ></textarea>
+            <button type="submit" class="send-btn" [disabled]="!newComment.trim()">
+              <svg class="send-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 21L23 12L2 3V10L17 12L2 14V21Z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div *ngIf="loading" class="loading">Loading...</div>
+<div *ngIf="error" class="error">{{ error }}</div>

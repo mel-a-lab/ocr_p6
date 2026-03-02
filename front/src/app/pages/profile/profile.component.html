@@ -1,0 +1,79 @@
+<!-- profile.component.html (updated: remove Request access button) -->
+<app-nav-bar-home></app-nav-bar-home>
+
+<main class="profile-content">
+  <div *ngIf="loadingUser" class="loading">Loading profile...</div>
+
+  <div *ngIf="errorUser && !loadingUser" class="error">
+    {{ errorUser }}
+    <button (click)="loadUser()">Retry</button>
+  </div>
+
+  <div *ngIf="!loadingUser && !errorUser" class="profile-form-section">
+    <h1 class="profile-title">Profil utilisateur</h1>
+
+    <form [formGroup]="profileForm" class="profile-form">
+      <div class="form-group">
+        <label for="username" class="form-label">Username</label>
+        <input
+          id="username"
+          type="text"
+          formControlName="username"
+          class="form-input"
+          placeholder="Username"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="email" class="form-label">Email</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          class="form-input"
+          placeholder="email@email.fr"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password" class="form-label">Mot de passe</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          class="form-input"
+          placeholder="Mot de passe"
+        />
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="save-btn" [disabled]="profileForm.invalid" (click)="onSave()">
+          Sauvegarder
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <section class="subscriptions-section">
+    <h2 class="section-title">Abonnements</h2>
+
+    <div *ngIf="loadingSubscriptions" class="loading">Loading subscriptions...</div>
+
+    <div *ngIf="errorSubscriptions && !loadingSubscriptions" class="error">
+      {{ errorSubscriptions }}
+      <button (click)="loadSubscriptions()">Retry</button>
+    </div>
+
+    <div *ngIf="!loadingSubscriptions && !errorSubscriptions && subscribedThemes.length === 0" class="no-subs">
+      No subscriptions available.
+    </div>
+
+    <div *ngIf="!loadingSubscriptions && !errorSubscriptions && subscribedThemes.length > 0" class="subscriptions-grid">
+      <app-theme-card
+        *ngFor="let theme of subscribedThemes; trackBy: trackById"
+        [theme]="theme"
+        (subscriptionToggled)="onSubscriptionToggled($event)">
+      </app-theme-card>
+    </div>
+  </section>
+</main>

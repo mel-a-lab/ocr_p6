@@ -1,0 +1,28 @@
+<app-nav-bar-home></app-nav-bar-home>
+
+<main class="themes-content">
+  <div *ngIf="loading" class="loading">Loading themes...</div>
+
+  <div *ngIf="error" class="error">
+    {{ error }}
+    <button (click)="loadThemes()">Retry</button>
+  </div>
+
+  <div *ngIf="!loading && !error && themes.length === 0" class="loading">
+    No themes available.
+  </div>
+
+  <div class="top-row">
+    <button routerLink="/createTheme" class="create-btn">Créer un Theme</button>
+
+  </div>
+
+
+  <div *ngIf="!loading && !error" class="themes-grid">
+    <app-theme-card
+      *ngFor="let theme of themes; trackBy: trackById"
+      [theme]="theme"
+      (subscriptionToggled)="onSubscriptionToggled($event)">
+    </app-theme-card>
+  </div>
+</main>

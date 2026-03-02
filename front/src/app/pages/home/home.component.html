@@ -1,5 +1,17 @@
-<div class="center">
-  <img src="/assets/logo_p6.png" alt="logo" />
-  <h1>Welcome to MDD</h1>
-  <button mat-raised-button color="primary" (click)="start()">Commencer</button>
-</div>
+<!-- home.component.html -->
+<app-nav-bar-home></app-nav-bar-home>
+
+<main class="main-content">
+  <div class="top-row">
+    <button routerLink="/create" class="create-btn">Créer un article</button>
+    <div class="filter-group">
+      <label for="sort">Trier par ↓</label>
+      <select id="sort" [(ngModel)]="selectedSort" class="sort-select">
+        <option *ngFor="let option of sortOptions" [value]="option">{{ option }}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Articles Section -->
+  <app-article-card [sort]="selectedSort"></app-article-card>
+</main>

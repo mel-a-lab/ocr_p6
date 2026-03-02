@@ -1,0 +1,42 @@
+<!-- Navbar (visible on desktop) -->
+<app-nav-bar-landing class="desktop-nav"></app-nav-bar-landing>
+
+<div class="login-container">
+  <!-- Back Button (visible in all modes) -->
+  <button class="back-btn" routerLink="/">
+    &#8592;
+  </button>
+
+  <!-- Logo (visible only on mobile) -->
+  <img src="assets/logo_p6.png" alt="Logo" class="logo" />
+
+  <!-- Heading -->
+  <h1>Login</h1>
+
+  <!-- Login Form -->
+  <form class="login-form" (ngSubmit)="onLogin()">
+    <div class="input-group">
+      <label for="usernameOrEmail">Username</label>
+      <input
+        type="text"
+        id="usernameOrEmail"
+        [(ngModel)]="credentials.usernameOrEmail"
+        name="usernameOrEmail"
+        required />
+    </div>
+
+    <div class="input-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        [(ngModel)]="credentials.password"
+        name="password"
+        required />
+    </div>
+
+    <button type="submit" class="login-btn">Login</button>
+  </form>
+
+  <p *ngIf="errorMessage" class="error-msg">{{ errorMessage }}</p>
+</div>

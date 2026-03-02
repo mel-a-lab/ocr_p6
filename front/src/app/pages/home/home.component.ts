@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { ArticleResponseDTO } from 'src/app/shared/models/article.model';
 
 @Component({
   selector: 'app-home',
@@ -6,11 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
 
-  ngOnInit(): void {}
+  sortOptions = ['newst','oldest'];
+  selectedSort = 'newst';
+  // Sample data for articles
+  ngOnInit(): void {
 
-  start() {
-    alert('Commencez par lire le README et à vous de jouer !');
   }
 }

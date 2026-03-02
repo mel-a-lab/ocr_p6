@@ -1,0 +1,185 @@
+/* profile.component.scss (updated for further UI tweaks) */
+.profile-content {
+  --primary-color: #2196F3; /* Blue for inputs */
+  --accent-color: #4CAF50;
+  --border-color: #ddd;
+  --text-color: #333;
+  --bg-color: #fafafa;
+
+  max-width: 835px;
+  margin: 0 auto;
+  padding: 20px;
+  color: var(--text-color, #333);
+  background-color: var(--bg-color, white);
+  font-family: inherit;
+}
+
+.profile-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: var(--text-color);
+  text-align: center;
+}
+
+.profile-form-section {
+  margin-bottom: 40px;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center; /* Center the form groups */
+  max-width: 400px; /* Limit form width for narrower inputs */
+  margin: 0 auto;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%; /* Inputs take full width of form */
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color);
+  text-align: left;
+}
+
+.form-input {
+  border: 2px solid var(--primary-color); /* Blue border */
+  border-radius: 4px;
+  padding: 12px; /* Increased padding for taller height */
+  font-size: 14px;
+  background-color: white;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  height: 48px; /* Fixed height for consistency */
+  box-sizing: border-box;
+
+  &:focus {
+    border-color: color-mix(in srgb, var(--primary-color) 80%, transparent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary-color) 20%, transparent);
+  }
+
+  &::placeholder {
+    color: #999;
+  }
+
+  &.ng-invalid.ng-touched {
+    border-color: #f44336;
+  }
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center; /* Center the save button */
+  align-items: center;
+  margin-top: 20px;
+  gap: 12px;
+}
+
+.request-btn, .save-btn {
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+  color: white;
+}
+
+.request-btn {
+  background-color: var(--accent-color);
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--accent-color) 80%, black);
+  }
+}
+
+.save-btn {
+  background-color: var(--primary-color); /* Blue for save button */
+
+  &:hover:not(:disabled) {
+    background-color: color-mix(in srgb, var(--primary-color) 80%, black);
+  }
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
+
+.error {
+  text-align: center;
+  padding: 20px;
+  color: #f44336;
+  background-color: #ffebee;
+
+  button {
+    margin-left: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #45a049;
+    }
+  }
+}
+
+.no-subs {
+  text-align: center;
+  padding: 20px;
+  color: #999;
+  font-style: italic;
+}
+
+.subscriptions-section {
+  border-top: 1px solid var(--border-color);
+  padding-top: 20px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: var(--text-color);
+  text-align: center;
+}
+
+.subscriptions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .profile-content {
+    padding: 10px;
+  }
+
+  .subscriptions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .profile-form {
+    max-width: 100%; /* Full width on mobile */
+  }
+}

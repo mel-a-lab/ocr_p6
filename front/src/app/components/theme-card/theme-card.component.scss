@@ -1,0 +1,89 @@
+/* src/app/components/theme-card/theme-card.component.scss (Unchanged) */
+.theme-card {
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  transition: box-shadow 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.theme-card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.theme-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 0.5rem 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.theme-description {
+  color: #4b5563;
+  line-height: 1.5;
+  margin: 0 0 0.5rem 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.subscribers-count {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0 0 1rem 0;
+  font-weight: 500;
+}
+
+.subscribe-btn {
+  background-color: #a855f7;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100%;
+  font-weight: 500;
+}
+
+.subscribe-btn:hover:not(.subscribed) {
+  background-color: #9333ea;
+}
+
+.subscribe-btn.subscribed {
+  background-color: #d1d5db;
+  color: #6b7280;
+  cursor: default;
+}
+
+.subscribe-btn.subscribed:hover {
+  background-color: #d1d5db;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .theme-card {
+    padding: 1rem;
+  }
+
+  .theme-title {
+    font-size: 1.125rem;
+  }
+
+  .theme-description {
+    -webkit-line-clamp: 5;
+  }
+
+  .subscribe-btn {
+    padding: 0.75rem;
+  }
+}

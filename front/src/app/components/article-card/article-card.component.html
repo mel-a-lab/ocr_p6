@@ -1,0 +1,11 @@
+<div class="articles-grid">
+  <article *ngFor="let article of articles" class="article-card" (click)="onArticleClick(article)" [routerLink]="['/article', article.id]">
+    <h2 class="article-title">{{ article.title }}</h2>
+    <div class="article-meta">
+      <span class="meta-date">{{ article.createdAt | date:'short' }}</span>
+      <span class="meta-author">{{ article.author }}</span>
+    </div>
+    <p class="article-content">{{ article.content }}</p>
+    <span class="article-theme">{{ article.theme }}</span>
+  </article>
+</div>

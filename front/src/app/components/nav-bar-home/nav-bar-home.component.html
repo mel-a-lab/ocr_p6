@@ -1,0 +1,31 @@
+<div class="navbar-container">
+  <!-- Mobile Sidebar Overlay -->
+  <div class="mobile-overlay" *ngIf="isMobile && isMobileMenuOpen" (click)="closeMobileMenu()"></div>
+
+  <!-- Mobile Sidebar -->
+  <aside class="mobile-sidebar" *ngIf="isMobile" [class.open]="isMobileMenuOpen">
+    <nav class="mobile-nav">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="mobile-nav-link" (click)="closeMobileMenu()">Articles</a>
+      <a routerLink="/themes" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="mobile-nav-link" (click)="closeMobileMenu()">Thèmes</a>
+      <button class="logout-btn" (click)="logout(); closeMobileMenu()">Se déconnecter</button>
+      <button routerLink="/profile" class="user-profile" (click)="closeMobileMenu()">👤</button>
+    </nav>
+  </aside>
+
+  <header class="header">
+    <div class="logo">
+      <img src="assets/logo_p6.png" alt="MDD Logo" class="logo-image">
+    </div>
+    <div class="right-section">
+      <button class="hamburger" *ngIf="isMobile" (click)="toggleMobileMenu()">☰</button>
+      <nav class="desktop-nav" *ngIf="!isMobile">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">Articles</a>
+        <a routerLink="/themes" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">Thèmes</a>
+      </nav>
+      <div class="header-actions" *ngIf="!isMobile">
+        <button class="logout-btn" (click)="logout()">Se déconnecter</button>
+        <button routerLink="/profile" class="user-profile">👤</button>
+      </div>
+    </div>
+  </header>
+</div>

@@ -1,0 +1,12 @@
+<article class="theme-card">
+  <h2 class="theme-title">{{ theme.name }}</h2>
+  <p class="theme-description">{{ theme.description }}</p>
+  <p class="subscribers-count">{{ theme.subscribersCount }} abonnés</p>
+
+  <button
+    class="subscribe-btn"
+    [class.subscribed]="theme.subscribed"
+    (click)="onToggleSubscription()">
+    {{ theme.subscribed ? 'Se désabonner' : 'S\'abonner' }}
+  </button>
+</article>

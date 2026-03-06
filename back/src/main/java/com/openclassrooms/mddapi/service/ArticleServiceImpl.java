@@ -23,25 +23,26 @@ import java.util.stream.Collectors;
 public class ArticleServiceImpl implements ArticleService {
 
     private final ArticleRepository articleRepository;
-    private final UserRepository userRepository;
     private final ThemeRepository themeRepository;
+    private final UserRepository userRepository;
 
     @Override
-    public ArticleResponseDTO createArticle(Long userId, ArticleRequestDTO dto) {
-        User author = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+    public ArticleResponseDTO createArticle(ArticleRequestDTO dto, String username) {
+        User author = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("Utilisateur introuvable"));
+
         Theme theme = themeRepository.findById(dto.getThemeId())
-                .orElseThrow(() -> new RuntimeException("Theme not found"));
+                .orElseThrow(() -> new RuntimeException("Thème introuvable"));
 
         Article article = Article.builder()
                 .title(dto.getTitle())
                 .content(dto.getContent())
-                .author(author)
                 .theme(theme)
+                .author(author)
                 .build();
 
-        articleRepository.save(article);
-        return mapToResponse(article);
+        Article savedArticle = articleRepository.save(article);
+        return mapToResponse(savedArticle);
     }
 
     @Override
@@ -92,7 +93,9 @@ public class ArticleServiceImpl implements ArticleService {
             articles.sort(Comparator.comparing(Article::getCreatedAt).reversed());
         }
 
-        return articles.stream().map(this::mapToResponse).collect(Collectors.toList());
+        return articles.stream()
+                .map(this::mapToResponse)
+                .collect(Collectors.toList());
     }
 
     private ArticleResponseDTO mapToResponse(Article article) {
@@ -116,6 +119,4 @@ public class ArticleServiceImpl implements ArticleService {
                         : List.of())
                 .build();
     }
-
 }
-

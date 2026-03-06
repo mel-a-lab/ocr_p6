@@ -6,7 +6,7 @@ import com.openclassrooms.mddapi.dto.ArticleResponseDTO;
 import java.util.List;
 
 public interface ArticleService {
-    ArticleResponseDTO createArticle(Long userId, ArticleRequestDTO dto);
+    ArticleResponseDTO createArticle(ArticleRequestDTO dto, String username);
     ArticleResponseDTO updateArticle(Long articleId, ArticleRequestDTO dto, Long userId);
     void deleteArticle(Long articleId, Long userId);
     ArticleResponseDTO getArticleById(Long articleId);

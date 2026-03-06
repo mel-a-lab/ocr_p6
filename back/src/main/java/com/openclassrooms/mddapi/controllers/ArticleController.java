@@ -5,7 +5,10 @@ import com.openclassrooms.mddapi.dto.ArticleResponseDTO;
 import com.openclassrooms.mddapi.service.ArticleService;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
+//import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
+
+import org.springframework.security.core.Authentication;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,14 +25,24 @@ public class ArticleController {
     // l'objet nommée authentification pour récupérer le contexte
     // regarder s'il y a une nouvelle version
 
-    @PostMapping("/user/{userId}")
-    public ResponseEntity<ArticleResponseDTO> createArticle(@PathVariable Long userId,
-            @RequestBody ArticleRequestDTO dto, Authentication authentication) {
-        authentication.getUsername(); // contexte ici
-        System.out.println("username :" + authentication.getUsername());
-        return ResponseEntity.ok(articleService.createArticle(userId, dto));
-    }
+//    @PostMapping("/user/{userId}")
+//    public ResponseEntity<ArticleResponseDTO> createArticle(@PathVariable Long userId,
+//            @RequestBody ArticleRequestDTO dto, Authentication authentication) {
+//        authentication.getUsername(); // contexte ici
+//        System.out.println("username :" + authentication.getUsername());
+//        return ResponseEntity.ok(articleService.createArticle(userId, dto));
+//    }
 
+      @PostMapping
+      public ResponseEntity<ArticleResponseDTO> createArticle(
+              @RequestBody ArticleRequestDTO dto,
+              Authentication authentication
+      ) {
+          String username = authentication.getName(); // ← récupère le user du token
+          return ResponseEntity.ok(articleService.createArticle(dto, username));
+      }
+
+      // retirer la modification
     @PutMapping("/{articleId}/user/{userId}")
     public ResponseEntity<ArticleResponseDTO> updateArticle(@PathVariable Long articleId,
             @PathVariable Long userId,
@@ -37,6 +50,7 @@ public class ArticleController {
         return ResponseEntity.ok(articleService.updateArticle(articleId, dto, userId));
     }
 
+// retirer la suppression
     @DeleteMapping("/{articleId}/user/{userId}")
     public ResponseEntity<Void> deleteArticle(@PathVariable Long articleId,
             @PathVariable Long userId) {
@@ -48,6 +62,11 @@ public class ArticleController {
     public ResponseEntity<ArticleResponseDTO> getArticleById(@PathVariable Long id) {
         return ResponseEntity.ok(articleService.getArticleById(id));
     }
+
+// montrer les articles qui sont liés au thème auquelle lutilisateur connecté est abonné
+    // test les commentaires
+    //commencer le front
+    // rediger le document sur les technos choisies
 
     @GetMapping
     public ResponseEntity<List<ArticleResponseDTO>> getAllArticlesSorted(

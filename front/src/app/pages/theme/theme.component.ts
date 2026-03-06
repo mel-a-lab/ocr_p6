@@ -47,8 +47,6 @@ export class ThemeComponent implements OnInit {
     if (index === -1) return;
 
     const oldState = this.themes[index].subscribed;
-
-    // ✅ Optimistic UI update (immediate text + color change)
     const updatedThemes = [...this.themes];
     updatedThemes[index] = { ...updatedThemes[index], subscribed: !oldState };
     this.themes = updatedThemes;
@@ -64,7 +62,7 @@ export class ThemeComponent implements OnInit {
       },
       error: (err: HttpErrorResponse) => {
         console.error('Toggle error:', err);
-        // ❌ revert change if failed
+
         const revertedThemes = [...this.themes];
         revertedThemes[index] = { ...revertedThemes[index], subscribed: oldState };
         this.themes = revertedThemes;
